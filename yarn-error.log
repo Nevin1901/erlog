@@ -1,0 +1,40 @@
+Arguments: 
+  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add express
+
+PATH: 
+  /home/nevin/.wasmer/bin:/home/nevin/.wasmer/bin:/home/nevin/.cargo/bin:/home/nevin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/nevin/.dotnet/tools:/usr/local/go/bin:/home/nevin/go/bin:/home/nevin/Android/Sdk/emulator:/home/nevin/Android/Sdk/tools:/home/nevin/Android/Sdk/tools/bin:/home/nevin/Android/Sdk/platform-tools:/home/nevin/.local/bin:/home/nevin/.yarn/bin:/home/nevin/.local/lib/python3.8/site-packages:/usr/local/cuda-11.7/bin:/home/nevin/.wasmer/globals/wapm_packages/.bin:/home/nevin/Android/Sdk/emulator:/home/nevin/Android/Sdk/tools:/home/nevin/Android/Sdk/tools/bin:/home/nevin/Android/Sdk/platform-tools:/home/nevin/.local/bin:/home/nevin/.yarn/bin:/home/nevin/.local/lib/python3.8/site-packages:/usr/local/cuda-11.7/bin:/home/nevin/.wasmer/globals/wapm_packages/.bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.14.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/nevin/Desktop/arlog/package.json: Unexpected token } in JSON at position 205
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "arlog",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+      "start": "tsc && node ./dist/index",
+      "start:dev": "tsc-watch --onSuccess \"node dist/index\"",
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
