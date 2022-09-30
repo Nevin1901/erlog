@@ -1,4 +1,7 @@
-from flask import Flask
+import json
+from flask import Flask, request, jsonify
+from database import db_session, init_db
+from models import Log
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -6,12 +9,25 @@ app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 
-db.init_app(app)
-
 with app.app_context():
-    db.create_all()
+    init_db()
 
 
 @app.route("/")
 def index():
-    return "bye"
+    logs = Log.query.all()
+    return jsonify(logs)
+
+
+@app.route("/create")
+def create():
+    text = request.args.get("text")
+    log = Log(text)
+    db_session.add(log)
+    db_session.commit()
+    return "ok"
+
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
