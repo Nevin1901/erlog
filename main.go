@@ -9,7 +9,10 @@ import (
 
 
 type LogRequestBody struct {
-	message string
+	logType string
+	title string
+	info string
+	extraData string
 }
 
 func main() {
@@ -36,7 +39,7 @@ func main() {
 			return
 		}
 
-		println(len(str1))
+		println(str1)
 
 		c.JSON(http.StatusOK, gin.H {
 			"message": name,
