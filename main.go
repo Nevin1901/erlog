@@ -5,9 +5,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/Nevin1901/arlog/models"
+
 	"github.com/gin-gonic/gin"
-	"github.com/go-gorm/datatypes"
-	"gorm.io/driver/sqlite"
+	"gorm.io/datatypes"
 	"gorm.io/gorm"
 )
 
@@ -29,13 +30,15 @@ type LogRequestBody struct {
 }
 
 func main() {
-	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
+	print("main")
+	print("got here")
+	// db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 
-	if err != nil {
-		panic("Failed to connect to db")
-	}
+	// if err != nil {
+	// 	panic("Failed to connect to db")
+	// }
 
-	db.AutoMigrate(&LogRequestBody{})
+	// db.AutoMigrate(&LogRequestBody{})
 
 	r := gin.Default()
 
@@ -55,7 +58,7 @@ func main() {
 		}
 
 		fmt.Printf("%+v\n", logObj)
-		db.Create(&logObj)
+		models.DB.Create(&logObj)
 		println("done")
 		c.String(200, "OK")
 		return
@@ -86,16 +89,12 @@ func main() {
 
 	r.POST("/all", func(c *gin.Context) {
 		var logs []LogRequestBody
-		result := db.Find(&logs)
+		result := models.DB.Find(&logs)
 
 		if result.Error != nil {
 			println("Error")
 			c.String(400, "Error")
 			return
-		}
-
-		if err != nil {
-			c.String(400, "Json parse error")
 		}
 
 		c.JSON(200, logs)
