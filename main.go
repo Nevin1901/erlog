@@ -8,28 +8,13 @@ import (
 	"github.com/Nevin1901/arlog/models"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/datatypes"
-	"gorm.io/gorm"
 )
-
-type Product struct {
-	gorm.Model
-	Code string
-	Price uint
-}
 
 // a super fast databse which basically stores a ton of stuff in memory, and then periodically writes to file when it can (when load is low)
 // sqlite is not meant for processing large records, and clickhouse is a pain in the ass to set up. We are not using docker images just to host our server
 
-type LogRequestBody struct {
-	gorm.Model
-	LogType 	string			`json:"logType"`
-	Message		string			`json:"message"`
-	Title		string			`json:"title"`
-	ExtraData	datatypes.JSON	`json:"extraData"`
-}
-
 func main() {
+	models.ConnectDB()
 	print("main")
 	print("got here")
 	// db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
@@ -47,7 +32,7 @@ func main() {
 	})
 
 	r.POST("/", func(c *gin.Context) {
-		var logObj LogRequestBody
+		var logObj models.ErLog
 
 		errLog := c.ShouldBindJSON(&logObj);
 
@@ -88,7 +73,7 @@ func main() {
 	})
 
 	r.POST("/all", func(c *gin.Context) {
-		var logs []LogRequestBody
+		var logs []models.ErLog
 		result := models.DB.Find(&logs)
 
 		if result.Error != nil {
