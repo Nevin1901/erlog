@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
+	"github.com/go-gorm/datatypes"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -22,10 +22,10 @@ type Product struct {
 
 type LogRequestBody struct {
 	gorm.Model
-	logType		string	`gorm:"serializer:json"`
-	title		string	`gorm:"serializer:json"`
-	info		string	`gorm:"serializer:json"`
-	extraData	string	`gorm:"serializer:json"`
+	LogType 	string			`json:"logType"`
+	Message		string			`json:"message"`
+	Title		string			`json:"title"`
+	ExtraData	datatypes.JSON	`json:"extraData"`
 }
 
 func main() {
@@ -44,9 +44,9 @@ func main() {
 	})
 
 	r.POST("/", func(c *gin.Context) {
-		logObj := LogRequestBody{}
+		var logObj LogRequestBody
 
-		errLog := c.ShouldBindBodyWith(&logObj, binding.JSON);
+		errLog := c.ShouldBindJSON(&logObj);
 
 		if errLog != nil {
 			println("Failed binding body")
@@ -56,8 +56,8 @@ func main() {
 
 		fmt.Printf("%+v\n", logObj)
 		db.Create(&logObj)
+		println("done")
 		c.String(200, "OK")
-		println("done");
 		return
 
 		name := c.Param("name")
@@ -85,11 +85,24 @@ func main() {
 	})
 
 	r.POST("/all", func(c *gin.Context) {
-		logs := LogRequestBody{};
+		var logs []LogRequestBody
 		result := db.Find(&logs)
-		println(result)
-		fmt.Printf("%+v\n", logs)
-		c.String(200, "ok")
+
+		if result.Error != nil {
+			println("Error")
+			c.String(400, "Error")
+			return
+		}
+
+		if err != nil {
+			c.String(400, "Json parse error")
+		}
+
+		c.JSON(200, logs)
+
+		// println(result.Error)
+		// fmt.Printf("%+v\n", logs)
+		// c.String(200, "ok")
 	})
 
 	r.GET("/:name", func(c *gin.Context) {
