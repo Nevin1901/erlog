@@ -5,7 +5,9 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/Nevin1901/arlog/controllers"
 	"github.com/Nevin1901/arlog/models"
+	"github.com/gin-contrib/cors"
 
 	"github.com/gin-gonic/gin"
 )
@@ -26,6 +28,7 @@ func main() {
 	// db.AutoMigrate(&LogRequestBody{})
 
 	r := gin.Default()
+	r.Use(cors.Default())
 
 	r.GET("/", func(c *gin.Context) {
 		c.String(200, "hello")
@@ -88,6 +91,8 @@ func main() {
 		// fmt.Printf("%+v\n", logs)
 		// c.String(200, "ok")
 	})
+
+	r.POST("/search", controllers.SearchController)
 
 	r.GET("/:name", func(c *gin.Context) {
 		name := c.Param("name")
