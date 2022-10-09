@@ -92,6 +92,8 @@ func main() {
 		// c.String(200, "ok")
 	})
 
+	r.POST("/count", controllers.CountController)
+	r.POST("/logs/:id", controllers.LogIdxController)
 	r.POST("/search", controllers.SearchController)
 
 	r.GET("/:name", func(c *gin.Context) {
