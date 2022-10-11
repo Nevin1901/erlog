@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { ErLog } from "../../types";
 import Code from "../../components/Code";
 
 export default function Id() {
-  const [logs, setLogs] = useState<ErLog[]>([]);
+  // const [logs, setLogs] = useState<ErLog[]>([]);
+  const logs: ErLog[] = useLoaderData() as ErLog[];
   const params = useParams();
   const router = useNavigate();
 
@@ -23,21 +24,22 @@ export default function Id() {
   };
 
   useEffect(() => {
-    const doWork = async () => {
-      const { data } = await axios.post(
-        `http://127.0.0.1:8080/logs/${params.id}`
-      );
-
-      setLogs(data);
-    };
-    doWork();
+    // const doWork = async () => {
+    //   const { data } = await axios.post(
+    //     `http://127.0.0.1:8080/logs/${params.id}`
+    //   );
+    //   setLogs(data);
+    // };
+    // doWork();
   }, []);
   if (logs.length === 0) {
     return <LoadingSpinner />;
   } else {
     return (
-      <div>
-        <a href="/logs">Go Back</a>
+      <div className="max-h-screen overflow-y-scroll">
+        <Link to="/logs">
+          <a href="/logs">Go Back</a>
+        </Link>
         <button onClick={() => deleteLog()} className="ml-2">
           Ignore
         </button>

@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Index from "./pages";
 import Id from "./pages/logs/Id";
+import { getLogById, getLogs } from "./loaders";
 
 const router = createBrowserRouter([
   {
@@ -15,10 +16,14 @@ const router = createBrowserRouter([
   {
     path: "/logs",
     element: <Index />,
-  },
-  {
-    path: "/logs/:id",
-    element: <Id />,
+    loader: getLogs,
+    children: [
+      {
+        path: "/logs/:id",
+        element: <Id />,
+        loader: getLogById,
+      },
+    ],
   },
 ]);
 
