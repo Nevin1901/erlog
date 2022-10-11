@@ -94,6 +94,7 @@ func main() {
 
 	r.POST("/count", controllers.CountController)
 	r.POST("/logs/:id", controllers.LogIdxController)
+	// r.POST("/logs/:message", controllers.SearchByMessageController)
 	r.POST("/search", controllers.SearchController)
 
 	r.GET("/:name", func(c *gin.Context) {

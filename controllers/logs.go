@@ -37,22 +37,25 @@ func SearchController(c *gin.Context) {
 func LogIdxController(c *gin.Context) {
 	var log []models.ErLog
 	id := c.Param("id")
+	println(id)
 
-	intId, err := strconv.Atoi(id)
+	i64, err := strconv.ParseUint(id, 10, 32)
+	intId := uint(i64)
 
 	if err != nil {
 		c.String(200, "Failed convering str to int")
 		return
 	}
 
-	result := models.DB.Find(&log, &models.ErLog{ID: intId})
+	result := models.DB.Raw("SELECT * FROM er_logs WHERE message = (SELECT message FROM er_logs WHERE id = ?)", intId).Scan(&log)
+	// result := models.DB.Find(&log, &models.ErLog{ID: intId})
 
 	if result.Error != nil {
 		c.String(400, "Error")
 		return
 	}
 
-	c.String(200, "OK")
+	c.JSON(200, log)
 }
 
 type MessageCount struct {
