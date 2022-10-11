@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { ErLog } from "../../types";
 import Code from "../../components/Code";
@@ -8,6 +8,19 @@ import Code from "../../components/Code";
 export default function Id() {
   const [logs, setLogs] = useState<ErLog[]>([]);
   const params = useParams();
+  const router = useNavigate();
+
+  const deleteLog = async () => {
+    if (logs.length < 1) {
+      return;
+    }
+
+    const { data } = await axios.post(
+      `http://127.0.0.1:8080/ignore/${logs[0].id}`
+    );
+
+    router("/logs");
+  };
 
   useEffect(() => {
     const doWork = async () => {
@@ -25,9 +38,11 @@ export default function Id() {
     return (
       <div>
         <a href="/logs">Go Back</a>
-        <button className="ml-2">Ignore Logs Like This</button>
+        <button onClick={() => deleteLog()} className="ml-2">
+          Ignore
+        </button>
         {logs.map((log) => (
-          <div key={log.ID}>
+          <div key={log.id}>
             <h1 className="font-semibold text-2xl">{log.title}</h1>
 
             <Code code={log.message} language={"javascript"}></Code>

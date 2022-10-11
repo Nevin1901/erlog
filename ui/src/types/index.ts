@@ -1,8 +1,8 @@
 export interface ErLog {
-  ID: number;
-  CreatedAt: string;
-  UpdatedAt: string;
-  DeletedAt?: string;
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string;
   logType: string;
   message: string;
   title: string;

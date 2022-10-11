@@ -33,7 +33,7 @@ function Index() {
         <div
           onClick={() => router(`/logs/${data.id}`)}
           key={data.message}
-          className="bg-gray-100 max-w-3xl rounded-md my-2 cursor-pointer mx-1 px-1.5 py-1"
+          className="bg-gray-100 border-2 border-red-500 max-w-3xl rounded-sm my-2 cursor-pointer mx-1 px-1.5 py-1"
         >
           <a className="font-bold">{data.title}</a>
           <p>{toLength(data.message, 100)}</p>

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -45,7 +44,25 @@ func main() {
 			return
 		}
 
-		fmt.Printf("%+v\n", logObj)
+		hash := models.GetMD5Hash(logObj.Message)
+		var exists bool
+		result := models.DB.Model(&models.IgnoreList{}).
+		Select("count(*) > 0").
+		Where("hash = ?", hash).
+		Find(&exists).Error
+
+		if result != nil {
+			c.String(400, "Error")
+			return
+		}
+
+		if exists == true {
+			println("ignored")
+			c.String(200, "Ignored")
+			return
+		}
+
+		// fmt.Printf("%+v\n", logObj)
 		models.DB.Create(&logObj)
 		println("done")
 		c.String(200, "OK")
@@ -94,6 +111,7 @@ func main() {
 
 	r.POST("/count", controllers.CountController)
 	r.POST("/logs/:id", controllers.LogIdxController)
+	r.POST("/ignore/:id", controllers.IgnoreLogController)
 	// r.POST("/logs/:message", controllers.SearchByMessageController)
 	r.POST("/search", controllers.SearchController)
 
