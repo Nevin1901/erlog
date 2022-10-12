@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toLength } from "../utils";
 import { Outlet, redirect, useLoaderData, useNavigate } from "react-router-dom";
+import LogContainer from "../components/LogContainer";
 
-interface LogCount {
+export interface LogCount {
   id: number;
   title: string;
   message: string;
   num: number;
+  logType: string;
 }
 
 function Index() {
@@ -37,15 +39,7 @@ function Index() {
       <div>
         <h1 className="font-semibold text-3xl">Logs</h1>
         {logData.map((data) => (
-          <div
-            onClick={() => router(`/logs/${data.id}`)}
-            key={data.message}
-            className="bg-gray-100 border-2 border-red-500 max-w-3xl rounded-sm my-2 cursor-pointer mx-1 px-1.5 py-1"
-          >
-            <a className="font-bold">{data.title}</a>
-            <p>{toLength(data.message, 100)}</p>
-            <p>{data.num}</p>
-          </div>
+          <LogContainer log={data} />
         ))}
         <h1>Hello</h1>
       </div>

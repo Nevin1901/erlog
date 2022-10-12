@@ -95,16 +95,41 @@ type MessageCount struct {
 	Title	string	`json:"title"`
 	Message	string	`json:"message"`
 	Num		int		`json:"num"`
+	LogType string	`json:"logType"`
 }
 
 func CountController(c *gin.Context) {
 	var count []MessageCount
 
-	result := models.DB.Raw("SELECT id, title, message, COUNT(*) AS `num` FROM er_logs WHERE deleted_at IS NULL GROUP BY message").Scan(&count)
+	result := models.DB.Raw("SELECT id, title, message, log_type, COUNT(*) AS `num` FROM er_logs WHERE deleted_at IS NULL GROUP BY message").Scan(&count)
 	if result.Error != nil {
 		c.String(400, "Error getting logs")
 		return
 	}
 
 	c.JSON(200, count)
+}
+
+func RotateLogController(c *gin.Context) {
+	max_log_amt := 2
+
+	// str_amount := strconv.Itoa(max_log_amt)
+
+	var count int64
+	result := models.DB.Find(&models.ErLog{}).Count(&count)
+
+	delete_amt := int(count) - max_log_amt
+
+	if result.Error != nil {
+		c.String(400, "Error counting logs")
+		return
+	}
+
+	var to_delete []models.ErLog
+	models.DB.Order("id ASC").Limit(delete_amt).Find(&to_delete)
+	models.DB.Delete(&to_delete)
+
+	// models.DB.Exec("DELETE FROM er_logs WHERE id in (SELECT id FROM er_logs ORDER BY id ASC LIMIT ?)", str_amount)
+
+	c.String(200, "Deleted Logs")
 }

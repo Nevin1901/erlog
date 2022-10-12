@@ -114,6 +114,7 @@ func main() {
 	r.POST("/ignore/:id", controllers.IgnoreLogController)
 	// r.POST("/logs/:message", controllers.SearchByMessageController)
 	r.POST("/search", controllers.SearchController)
+	r.POST("/rotate", controllers.RotateLogController)
 
 	r.GET("/:name", func(c *gin.Context) {
 		name := c.Param("name")
