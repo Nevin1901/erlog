@@ -1,9 +1,8 @@
-## arlog
+## erlog
 
-a simple lightweight logging platform
+erlog is a simple lightweight logging platform. you can log events from your code, and then they will show up in the backend
 
-this will be a monorepo. So you will download it by saying arlog/node
-arlog/python
+it uses sqlite for now, but we're switching to something that can scale. problem is: it needs to be SIMPLE. if you have any ideas prs are welcome
 
 ## running
 
