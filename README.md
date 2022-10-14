@@ -4,6 +4,8 @@ erlog is a simple lightweight logging platform. you can log events from your cod
 
 it uses sqlite for now, but we're switching to something that can scale. problem is: it needs to be SIMPLE. if you have any ideas prs are welcome
 
+Very early access
+
 ## running
 
 `go run -tags json1 main.go`
