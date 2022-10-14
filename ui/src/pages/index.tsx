@@ -12,23 +12,19 @@ export interface LogCount {
   logType: string;
 }
 
+export interface ILoaderData {
+  logData: LogCount[];
+  search: string;
+}
+
 function Index() {
   const router = useNavigate();
   // const [logData, setLogData] = useState<LogCount[]>([]);
-  const logData: LogCount[] = useLoaderData() as LogCount[];
+  const { logData, search }: ILoaderData = useLoaderData() as any;
 
   useEffect(() => {
-    // const doWork = async () => {
-    //   try {
-    //     const { data } = await axios.post("http://127.0.0.1:8080/count");
-    //     setLogData(data);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // doWork();
-    console.log(logData);
-  }, []);
+    (document.getElementById("search") as any).value = search;
+  }, [search]);
 
   if (!logData) {
     return <div></div>;
@@ -38,6 +34,15 @@ function Index() {
     <div className="grid grid-cols-2">
       <div>
         <h1 className="font-semibold text-3xl">Logs</h1>
+        <form id="search-form" role="search">
+          <input
+            id="search"
+            name="search"
+            className="border-2 border-blue-500 rounded-sm mx-1 my-1"
+            type="text"
+            defaultValue={search}
+          />
+        </form>
         {logData.map((data) => (
           <LogContainer log={data} />
         ))}
