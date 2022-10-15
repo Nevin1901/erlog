@@ -20,3 +20,8 @@ export async function getLogById({ params }: any) {
   const { data } = await axios.post(`http://127.0.0.1:8080/logs/${params.id}`);
   return data;
 }
+
+export async function getIgnored() {
+  const { data } = await axios.post("http://127.0.0.1:8080/ignored");
+  return data;
+}

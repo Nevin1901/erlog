@@ -9,19 +9,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import LogContainer from "../components/LogContainer";
-
-export interface LogCount {
-  id: number;
-  title: string;
-  message: string;
-  num: number;
-  logType: string;
-}
-
-export interface ILoaderData {
-  logData: LogCount[];
-  search: string;
-}
+import { ILoaderData } from "../models";
 
 function Index() {
   const router = useNavigate();

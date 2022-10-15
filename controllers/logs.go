@@ -90,6 +90,10 @@ func IgnoreLogController(c *gin.Context) {
 
 	preview := log.Message[0:preview_length]
 
+	if preview_length == 40 {
+		preview += "..."
+	}
+
 	hash := models.GetMD5Hash(log.Message)
 	ignore_log := models.IgnoreList{Hash: hash, Preview: preview}
 	models.DB.Create(&ignore_log)

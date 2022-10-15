@@ -8,8 +8,8 @@ import {
   useParams,
 } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { ErLog } from "../../types";
 import Code from "../../components/Code";
+import { ErLog } from "../../models";
 
 export default function Id() {
   // const [logs, setLogs] = useState<ErLog[]>([]);

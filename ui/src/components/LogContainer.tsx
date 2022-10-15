@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { LogCount } from "../pages";
-import { ErLog } from "../types";
+import { LogCount } from "../models";
 import { toLength } from "../utils";
 import LinkWithQuery from "./LinkWithQuery";
 
