@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toLength } from "../utils";
-import { Outlet, redirect, useLoaderData, useNavigate } from "react-router-dom";
+import {
+  Form,
+  Outlet,
+  redirect,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 import LogContainer from "../components/LogContainer";
 
 export interface LogCount {
@@ -34,7 +40,7 @@ function Index() {
     <div className="grid grid-cols-2">
       <div>
         <h1 className="font-semibold text-3xl">Logs</h1>
-        <form id="search-form" role="search">
+        <Form id="search-form" role="search">
           <input
             id="search"
             name="search"
@@ -42,7 +48,7 @@ function Index() {
             type="text"
             defaultValue={search}
           />
-        </form>
+        </Form>
         {logData.map((data) => (
           <LogContainer log={data} />
         ))}
