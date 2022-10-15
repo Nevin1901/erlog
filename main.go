@@ -115,13 +115,7 @@ func main() {
 	// r.POST("/logs/:message", controllers.SearchByMessageController)
 	r.POST("/search", controllers.SearchController)
 	r.POST("/rotate", controllers.RotateLogController)
-
-	r.GET("/:name", func(c *gin.Context) {
-		name := c.Param("name")
-		println("hello " + name)
-		message := "hello " + name
-		c.String(http.StatusOK, message)
-	})
+	r.POST("/ignored", controllers.GetIgnoredController)
 
 	r.Run()
 	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { fmt.Fprintf(w, "Hello you've requested root")
