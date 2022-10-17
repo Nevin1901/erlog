@@ -28,3 +28,11 @@ scaling -> clickhouse maybe? only I'm not using a docker image
 docker images are an excuse to throw whatever and hope it works. erlog should be able to run fast and simple without having 8gb of ram and 2 cores.
 
 If you just want to run this on your vps then you should be able to do that without pulling 10,000 depdenencies
+
+## todo
+
+set WAL, set pragma syncrhonous=NORMAL or off, batch inserts, use custom ORM
+
+- benchmark sqlite with gorm and also with sqlite3 go, compilation options
+
+- maybe try to set db.Set("gorm:table_options", "mystring").Migrator().CreateTable(&User{}) to append for creating table
