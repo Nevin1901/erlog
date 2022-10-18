@@ -8,7 +8,6 @@ import (
 )
 
 type SearchParams struct {
-	Field	string	`json:"field"`
 	Value	string	`json:"value"`
 }
 
@@ -22,7 +21,6 @@ func SearchController(c *gin.Context) {
 	}
 
 	var logs []models.ErLog
-	println(params.Field)
 	// WARNING: this line might not be safe to use
 	result := models.DB.Where("message LIKE ? OR extra_data LIKE ?", "%" + params.Value + "%", "%" + params.Value + "%").Find(&logs)
 
