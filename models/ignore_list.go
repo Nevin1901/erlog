@@ -11,5 +11,6 @@ type IgnoreList struct {
 	CreatedAt 	time.Time		`json:"createdAt"`
 	UpdatedAt 	time.Time		`json:"updatedAt"`
 	DeletedAt 	gorm.DeletedAt	`json:"deletedAt" gorm:"index"`
+	Preview		string			`json:"preview"`
 	Hash		string			`json:"hash"`
 }

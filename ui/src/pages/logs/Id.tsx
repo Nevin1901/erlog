@@ -1,15 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  useLoaderData,
+  useNavigate,
+  useNavigation,
+  useParams,
+} from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { ErLog } from "../../types";
 import Code from "../../components/Code";
+import { ErLog } from "../../models";
 
 export default function Id() {
   // const [logs, setLogs] = useState<ErLog[]>([]);
   const logs: ErLog[] = useLoaderData() as ErLog[];
   const params = useParams();
   const router = useNavigate();
+  const navigation = useNavigation();
 
   const deleteLog = async () => {
     if (logs.length < 1) {
@@ -35,6 +42,9 @@ export default function Id() {
   if (logs.length === 0) {
     return <LoadingSpinner />;
   } else {
+    if (navigation.state === "loading") {
+      return <LoadingSpinner />;
+    }
     return (
       <div className="max-h-screen overflow-y-scroll">
         <Link to="/logs">

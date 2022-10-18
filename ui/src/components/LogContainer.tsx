@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { LogCount } from "../pages";
-import { ErLog } from "../types";
+import { LogCount } from "../models";
 import { toLength } from "../utils";
+import LinkWithQuery from "./LinkWithQuery";
 
 interface IProps {
   log: LogCount;
@@ -22,7 +22,7 @@ function getBorder(logType: string) {
 
 export default function LogContainer({ log }: IProps) {
   return (
-    <Link to={`/logs/${log.id}`}>
+    <LinkWithQuery to={`/logs/${log.id}`}>
       <div
         key={log.message}
         className={`bg-gray-100 border-2 ${getBorder(
@@ -33,6 +33,6 @@ export default function LogContainer({ log }: IProps) {
         <p>{toLength(log.message, 100)}</p>
         <p>{log.num}</p>
       </div>
-    </Link>
+    </LinkWithQuery>
   );
 }

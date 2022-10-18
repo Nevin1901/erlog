@@ -6,7 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Index from "./pages";
 import Id from "./pages/logs/Id";
-import { getLogById, getLogs } from "./loaders";
+import { getIgnored, getLogById, getLogs } from "./loaders";
+import Ignored from "./pages/ignored";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
         loader: getLogById,
       },
     ],
+  },
+  {
+    path: "/ignored",
+    element: <Ignored />,
+    loader: getIgnored,
   },
 ]);
 

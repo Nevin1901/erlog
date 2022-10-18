@@ -79,8 +79,23 @@ func IgnoreLogController(c *gin.Context) {
 		return
 	}
 
+	var preview_length int
+	length := len(log.Message)
+
+	if length < 40 {
+		preview_length = len(log.Message)
+	} else {
+		preview_length = 40
+	}
+
+	preview := log.Message[0:preview_length]
+
+	if preview_length == 40 {
+		preview += "..."
+	}
+
 	hash := models.GetMD5Hash(log.Message)
-	ignore_log := models.IgnoreList{Hash: hash}
+	ignore_log := models.IgnoreList{Hash: hash, Preview: preview}
 	models.DB.Create(&ignore_log)
 
 	var deletedLogs []models.ErLog
@@ -98,8 +113,10 @@ type MessageCount struct {
 
 func CountController(c *gin.Context) {
 	var count []MessageCount
+	search := c.Query("search")
+	println(search)
 
-	result := models.DB.Raw("SELECT id, title, message, log_type, COUNT(*) AS `num` FROM er_logs WHERE deleted_at IS NULL GROUP BY message").Scan(&count)
+	result := models.DB.Raw("SELECT id, title, message, log_type, COUNT(*) AS `num` FROM er_logs WHERE (message LIKE ? OR extra_data LIKE ? OR title LIKE ?) AND deleted_at IS NULL GROUP BY message", "%"+search+"%", "%"+search+"%", "%"+search+"%").Scan(&count)
 	if result.Error != nil {
 		c.String(400, "Error getting logs")
 		return
