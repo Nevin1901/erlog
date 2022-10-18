@@ -18,13 +18,6 @@ func main() {
 	models.ConnectDB()
 	print("main")
 	print("got here")
-	// db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
-
-	// if err != nil {
-	// 	panic("Failed to connect to db")
-	// }
-
-	// db.AutoMigrate(&LogRequestBody{})
 
 	r := gin.Default()
 	r.Use(cors.Default())
@@ -103,26 +96,14 @@ func main() {
 		}
 
 		c.JSON(200, logs)
-
-		// println(result.Error)
-		// fmt.Printf("%+v\n", logs)
-		// c.String(200, "ok")
 	})
 
 	r.POST("/count", controllers.CountController)
 	r.POST("/logs/:id", controllers.LogIdxController)
 	r.POST("/ignore/:id", controllers.IgnoreLogController)
-	// r.POST("/logs/:message", controllers.SearchByMessageController)
 	r.POST("/search", controllers.SearchController)
 	r.POST("/rotate", controllers.RotateLogController)
 	r.POST("/ignored", controllers.GetIgnoredController)
 
 	r.Run()
-	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { fmt.Fprintf(w, "Hello you've requested root")
-	// })
-
-	// fs := http.FileServer(http.Dir("static/"))
-	// http.Handle("/static/", http.StripPrefix("/static/", fs))
-
-	// http.ListenAndServe(":8000", nil)
 }
