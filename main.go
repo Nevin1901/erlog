@@ -29,7 +29,7 @@ func main() {
 	r.POST("/", func(c *gin.Context) {
 		var logObj models.ErLog
 
-		errLog := c.ShouldBindJSON(&logObj);
+		errLog := c.ShouldBindJSON(&logObj)
 
 		if errLog != nil {
 			println("Failed binding body")
@@ -40,9 +40,9 @@ func main() {
 		hash := models.GetMD5Hash(logObj.Message)
 		var exists bool
 		result := models.DB.Model(&models.IgnoreList{}).
-		Select("count(*) > 0").
-		Where("hash = ?", hash).
-		Find(&exists).Error
+			Select("count(*) > 0").
+			Where("hash = ?", hash).
+			Find(&exists).Error
 
 		if result != nil {
 			c.String(400, "Error")
@@ -80,7 +80,7 @@ func main() {
 
 		println(str1)
 
-		c.JSON(http.StatusOK, gin.H {
+		c.JSON(http.StatusOK, gin.H{
 			"message": name,
 		})
 	})
