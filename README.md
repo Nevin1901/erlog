@@ -8,7 +8,7 @@ Very early access
 
 ## running
 
-`go run -tags json1 fts5 main.go`
+`go run -tags json1 main.go`
 
 ### looking for people to help build the commercial version
 

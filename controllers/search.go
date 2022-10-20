@@ -5,6 +5,19 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func AllLogsController(c *gin.Context) {
+	var logs []models.ErLog
+	result := models.DB.Find(&logs)
+
+	if result.Error != nil {
+		println("Error")
+		c.String(400, "Error")
+		return
+	}
+
+	c.JSON(200, logs)
+}
+
 func SearchByMessageController(c *gin.Context) {
 	id := c.Param("id")
 	print(id)

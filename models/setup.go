@@ -30,5 +30,8 @@ func ConnectDB() {
 	database.AutoMigrate(&ErLog{})
 	database.AutoMigrate(&IgnoreList{})
 
+	database.Exec("PRAGMA journal_mode=WAL;")
+	database.Exec("PRAGMA synchronous=1")
+
 	DB = database
 }

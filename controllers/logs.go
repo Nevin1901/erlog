@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"net/http"
 	"strconv"
 
 	"github.com/Nevin1901/arlog/models"
@@ -9,6 +10,41 @@ import (
 
 type SearchParams struct {
 	Value	string	`json:"value"`
+}
+
+func AddLogController(c *gin.Context) {
+	var logObj models.ErLog
+
+	errLog := c.ShouldBindJSON(&logObj)
+
+	if errLog != nil {
+		println("Failed binding body")
+		c.String(http.StatusBadRequest, "Failed binding body")
+		return
+	}
+
+	hash := models.GetMD5Hash(logObj.Message)
+	var exists bool
+	result := models.DB.Model(&models.IgnoreList{}).
+		Select("count(*) > 0").
+		Where("hash = ?", hash).
+		Find(&exists).Error
+
+	if result != nil {
+		c.String(400, "Error")
+		return
+	}
+
+	if exists == true {
+		println("ignored")
+		c.String(200, "Ignored")
+		return
+	}
+
+	// fmt.Printf("%+v\n", logObj)
+	models.DB.Create(&logObj)
+	println("done")
+	c.String(200, "OK")
 }
 
 func SearchController(c *gin.Context) {
