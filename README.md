@@ -1,34 +1,27 @@
-## erlog
+## Erlog
 
-erlog is a simple lightweight logging platform. you can log events from your code, and then they will show up in the backend
+Erlog is a simple lightweight logging platform. Erlog lets you add logging to your code without worrying about a whole other product.
 
-## running
+## Running
 
 `go run -tags json1 main.go`
 
-### looking for people to help build the commercial version
+## Rationale
 
-will be hosted by us and will be easier for the customer. dm Nevin#7114 on discord if you want to be a part of it.
+logging sucks. It's expensive, most open source options are not easily self hostable, and for small projects, there's no easy way to implement logs into your applications wihtout using a third party option or self hosting your own logging server.
 
-doesn't matter what you do so long as you're dedicated to building the worlds next logging software
+## Things that can change
 
-## rationale
+Erlog currently uses sqlite with flags and tweaks which make it really fast. The problem is sqlite can't scale. I'm debating using clickhouse, but at the added complexity of having docker images, and a higher startup cost (4gb ram + dual core if you want to get the most of clickouse)
 
-if we want fts, sqlite is really fast https://supabase.com/blog/postgres-full-text-search-vs-the-rest.
-we can then split up the data into 500 chunks to save into the db. no case of failure if the logging server goes down.
+Also debating using sqlite fts5 tables instead of normal tables for full text search, but I'm not sure that would play nicely with gorm
 
-sqlite can also use json. we can look through and see if there is a key
+### Looking for people to help build the commercial version
 
-scaling -> clickhouse maybe? only I'm not using a docker image
+Will be hosted by us and will be easier for the customer. Dm Nevin#7114 on discord if you want to be a part of it.
 
-docker images are an excuse to throw whatever and hope it works. erlog should be able to run fast and simple without having 8gb of ram and 2 cores.
+Doesn't matter what you do so long as you're dedicated to building the worlds next logging software
 
-If you just want to run this on your vps then you should be able to do that without pulling 10,000 depdenencies
-
-## todo
-
-set WAL, set pragma syncrhonous=NORMAL or off, batch inserts, use custom ORM
+## Todo
 
 - benchmark sqlite with gorm and also with sqlite3 go, compilation options
-
-- maybe try to set db.Set("gorm:table_options", "mystring").Migrator().CreateTable(&User{}) to append for creating table
