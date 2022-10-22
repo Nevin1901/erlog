@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { Router } from "react-router-dom";
+import { Router, useNavigate } from "react-router-dom";
 
 function App() {
+  const router = useNavigate();
   useEffect(() => {
-    window.location.href = "/logs";
+    router("/logs");
   }, []);
   return (
     <div>

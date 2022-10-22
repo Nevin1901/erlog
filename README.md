@@ -1,6 +1,6 @@
 ## Erlog
 
-Erlog is a simple lightweight logging platform. Erlog lets you add logging to your code without worrying about a whole other product.
+Erlog is a simple lightweight logging platform. Erlog lets you add logging to your code without worrying about logging.
 
 ## Running
 
@@ -9,6 +9,8 @@ Erlog is a simple lightweight logging platform. Erlog lets you add logging to yo
 ## Rationale
 
 logging sucks. It's expensive, most open source options are not easily self hostable, and for small projects, there's no easy way to implement logs into your applications wihtout using a third party option or self hosting your own logging server.
+
+Erlog lets you log without worrying about logging.
 
 ## Things that can change
 

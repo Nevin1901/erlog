@@ -25,8 +25,8 @@ function Index() {
   }
 
   return (
-    <div className="grid grid-cols-2">
-      <div>
+    <div className="flex">
+      <div style={{ flexGrow: "0.5", minWidth: "800px" }}>
         <h1 className="font-semibold text-3xl">Logs</h1>
         <Form id="search-form" role="search">
           <input
@@ -42,7 +42,16 @@ function Index() {
         ))}
         <h1>Hello</h1>
       </div>
-      <div className="h-20 bg-white">
+      <div
+        style={{
+          width: "6px",
+          color: "black",
+          backgroundColor: "black",
+          cursor: "ew-resize",
+        }}
+        className="h-screen"
+      ></div>
+      <div style={{ flexGrow: "0.5" }} className="h-20 bg-white">
         <Outlet />
       </div>
     </div>
