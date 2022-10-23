@@ -11,6 +11,10 @@ import (
 // a super fast databse which basically stores a ton of stuff in memory, and then periodically writes to file when it can (when load is low)
 // sqlite is not meant for processing large records, and clickhouse is a pain in the ass to set up. We are not using docker images just to host our server
 
+// TODO: add benchmark
+// and use the key value store and periodically append to db
+// alternatively I could just create a database in memory, and append to that (benchmark insert times for single records) and then periodically append to larger db every 100 seconds
+
 func main() {
 	models.ConnectDB()
 	r := gin.Default()
