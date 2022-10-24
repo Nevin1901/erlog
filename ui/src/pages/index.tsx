@@ -29,7 +29,7 @@ function Index() {
 
   return (
     <IDSplit>
-      <div>
+      <div className="mx-1.5 overflow-y-hidden">
         <h1 className="font-semibold text-3xl">Logs</h1>
         <Form id="search-form" role="search">
           <input

@@ -53,7 +53,7 @@ export default function Id() {
           <Link to="/logs">
             <CrossIcon />
           </Link>
-          <TrashIcon />
+          <TrashIcon onClick={() => deleteLog()} />
           {/* <button onClick={() => deleteLog()} className="ml-2">
             Ignore
           </button> */}
