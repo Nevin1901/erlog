@@ -22,7 +22,7 @@ export interface ErLog extends BaseModel {
   logType: string;
   message: string;
   title: string;
-  extraData?: object;
+  extraData?: any;
 }
 
 export interface IgnoredLog extends BaseModel {
