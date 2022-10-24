@@ -10,6 +10,8 @@ import {
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Code from "../../components/Code";
 import { ErLog } from "../../models";
+import CrossIcon from "../../components/icons/CrossIcon";
+import TrashIcon from "../../components/icons/TrashIcon";
 
 export default function Id() {
   // const [logs, setLogs] = useState<ErLog[]>([]);
@@ -46,13 +48,16 @@ export default function Id() {
       return <LoadingSpinner />;
     }
     return (
-      <div className="max-h-screen overflow-y-scroll">
-        <Link to="/logs">
-          <a href="/logs">Go Back</a>
-        </Link>
-        <button onClick={() => deleteLog()} className="ml-2">
-          Ignore
-        </button>
+      <div className="max-h-screen overflow-y-scroll mx-1.5 mt-1.5">
+        <div className="flex items-center">
+          <Link to="/logs">
+            <CrossIcon />
+          </Link>
+          <TrashIcon />
+          {/* <button onClick={() => deleteLog()} className="ml-2">
+            Ignore
+          </button> */}
+        </div>
         {logs.map((log) => (
           <div key={log.id}>
             <h1 className="font-semibold text-2xl">{log.title}</h1>
