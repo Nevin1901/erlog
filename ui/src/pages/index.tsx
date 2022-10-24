@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { toLength } from "../utils";
 import {
   Form,
   Outlet,
-  redirect,
   useLoaderData,
+  useLocation,
   useNavigate,
+  useNavigation,
 } from "react-router-dom";
+import Split from "react-split";
+import IDSplit from "../components/IdSplit";
 import LogContainer from "../components/LogContainer";
 import { ILoaderData } from "../models";
 
 function Index() {
   const router = useNavigate();
+  const location = useLocation();
   // const [logData, setLogData] = useState<LogCount[]>([]);
   const { logData, search }: ILoaderData = useLoaderData() as any;
 
   useEffect(() => {
+    console.log(location);
     (document.getElementById("search") as any).value = search;
   }, [search]);
 
@@ -25,8 +28,8 @@ function Index() {
   }
 
   return (
-    <div className="flex">
-      <div style={{ flexGrow: "0.5", minWidth: "800px" }}>
+    <IDSplit>
+      <div>
         <h1 className="font-semibold text-3xl">Logs</h1>
         <Form id="search-form" role="search">
           <input
@@ -42,19 +45,10 @@ function Index() {
         ))}
         <h1>Hello</h1>
       </div>
-      <div
-        style={{
-          width: "6px",
-          color: "black",
-          backgroundColor: "black",
-          cursor: "ew-resize",
-        }}
-        className="h-screen"
-      ></div>
-      <div style={{ flexGrow: "0.5" }} className="h-20 bg-white">
+      <div className="h-20 bg-white">
         <Outlet />
       </div>
-    </div>
+    </IDSplit>
   );
 }
 

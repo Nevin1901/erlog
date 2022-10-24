@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.gutter-horizontal {
+  background-color: #e2e8f0;
+  height: 100vh;
+}
+
+.gutter-horizontal:hover {
+  background-color: #cbd5e1;
+  cursor: ew-resize;
+}
