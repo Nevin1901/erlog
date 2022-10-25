@@ -17,7 +17,6 @@ import ChevronRightIcon from "@heroicons/react/24/solid/ChevronRightIcon";
 import { formatDistance } from "date-fns";
 
 export default function Id() {
-  // const [logs, setLogs] = useState<ErLog[]>([]);
   const logs: ErLog[] = useLoaderData() as ErLog[];
   const params = useParams();
   const router = useNavigate();
@@ -35,16 +34,6 @@ export default function Id() {
     router("/logs");
   };
 
-  useEffect(() => {
-    // const doWork = async () => {
-    //   const { data } = await axios.post(
-    //     `http://127.0.0.1:8080/logs/${params.id}`
-    //   );
-    //   setLogs(data);
-    // };
-    // doWork();
-  }, []);
-
   const toDate = (timeStamp: string) => {
     const current = new Date();
 
@@ -60,20 +49,17 @@ export default function Id() {
       return <LoadingSpinner />;
     }
     return (
-      <div className="max-h-screen overflow-y-scroll mx-1.5 mt-1.5">
+      <div className="max-h-screen overflow-y-scroll mt-1.5">
         <div className="flex items-center mb-1.5">
           <Link to="/logs">
             <CrossIcon />
           </Link>
           <TrashIcon onClick={() => deleteLog()} />
-          {/* <button onClick={() => deleteLog()} className="ml-2">
-            Ignore
-          </button> */}
         </div>
         <div className="space-y-1">
           {logs.map((log) => (
             <Disclosure key={log.id} as="div">
-              <Disclosure.Button className="flex items-center bg-gray-200">
+              <Disclosure.Button className="flex items-center border-y-2 border-black w-full">
                 <h1 className="font-bold">
                   {log.extraData.timestamp
                     ? toDate(log.extraData.timestamp)

@@ -28,27 +28,31 @@ function Index() {
   }
 
   return (
-    <IDSplit>
-      <div className="mx-1.5 overflow-y-hidden">
-        <h1 className="font-semibold text-xl">Logs</h1>
-        <Form id="search-form" role="search">
-          <input
-            id="search"
-            name="search"
-            className="border-2 border-blue-500 rounded-sm my-1"
-            type="text"
-            defaultValue={search}
-          />
-        </Form>
-        {logData.map((data) => (
-          <LogContainer log={data} />
-        ))}
-        <h1>Hello</h1>
+    <div>
+      <div className="h-8 flex items-center border-b-4 px-1.5">
+        <h1 className="font-bold text-xl">ErLog</h1>
       </div>
-      <div className="h-screen bg-white">
-        <Outlet />
-      </div>
-    </IDSplit>
+      <IDSplit>
+        <div className="mx-1.5 my-1.5 overflow-y-hidden">
+          {/* <h1 className="font-semibold text-xl">Logs</h1> */}
+          <Form id="search-form" role="search">
+            <input
+              id="search"
+              name="search"
+              className="border-2 border-blue-500 rounded-sm"
+              type="text"
+              defaultValue={search}
+            />
+          </Form>
+          {logData.map((data) => (
+            <LogContainer log={data} />
+          ))}
+        </div>
+        <div className="h-screen bg-white">
+          <Outlet />
+        </div>
+      </IDSplit>
+    </div>
   );
 }
 

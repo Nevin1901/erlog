@@ -15,7 +15,7 @@ export default function IDSplit({ children }: any) {
     return (
       <Split
         style={{ display: "flex" }}
-        gutterSize={5}
+        gutterSize={4}
         onDrag={handleDrag}
         cursor="ew-resize"
         sizes={sizes}

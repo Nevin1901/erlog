@@ -8,6 +8,7 @@
 }
 
 .gutter-horizontal:hover {
-  background-color: #cbd5e1;
+  background-color: #d1d5db;
+  /* background-color: #cbd5e1; */
   cursor: ew-resize;
 }
