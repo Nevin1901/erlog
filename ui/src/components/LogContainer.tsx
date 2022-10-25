@@ -29,10 +29,10 @@ export default function LogContainer({ log }: IProps) {
           log.logType
         )} max-w-3xl rounded-sm my-1.5 cursor-pointer px-1 py-1`}
       >
-        <a className="font-bold">
-          {log.title} <span className="text-sm text-gray-500">{log.num}</span>
+        <a className="font-bold text-base">
+          {log.title} <span className="text-xs text-gray-500">{log.num}</span>
         </a>
-        <p className="text-sm">{toLength(log.message, 100)}</p>
+        <p className="text-sm text-gray-700">{toLength(log.message, 100)}</p>
       </div>
     </LinkWithQuery>
   );

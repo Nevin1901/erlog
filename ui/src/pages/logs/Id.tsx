@@ -61,7 +61,7 @@ export default function Id() {
     }
     return (
       <div className="max-h-screen overflow-y-scroll mx-1.5 mt-1.5">
-        <div className="flex items-center">
+        <div className="flex items-center mb-1.5">
           <Link to="/logs">
             <CrossIcon />
           </Link>
@@ -74,7 +74,7 @@ export default function Id() {
           {logs.map((log) => (
             <Disclosure key={log.id} as="div">
               <Disclosure.Button className="flex items-center bg-gray-200">
-                <h1 className="font-semibold text-2xl">
+                <h1 className="font-bold">
                   {log.extraData.timestamp
                     ? toDate(log.extraData.timestamp)
                     : log.title}
@@ -85,7 +85,7 @@ export default function Id() {
                 <div key={log.id}>
                   <Code code={log.message} language={"javascript"}></Code>
 
-                  <h1 className="font-semibold text-xl">Extra Info</h1>
+                  <h1 className="font-bold">Extra Info</h1>
                   <Code
                     code={JSON.stringify(log.extraData, null, 2)}
                     language={"javascript"}

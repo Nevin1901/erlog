@@ -32,7 +32,7 @@ export default function Code({ code, language }: IProps) {
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Pre className={className} style={style}>
           {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
+            <div {...getLineProps({ line, key: i })} className="text-sm">
               {line.map((token, key) => (
                 <span {...getTokenProps({ token, key })} />
               ))}
