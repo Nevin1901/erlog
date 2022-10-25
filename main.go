@@ -29,6 +29,7 @@ func main() {
 	r.POST("/count", controllers.CountController)
 	r.POST("/logs/:id", controllers.LogIdxController)
 	r.POST("/ignore/:id", controllers.IgnoreLogController)
+	r.POST("/unignore", controllers.UnIgnoreController)
 	r.POST("/search", controllers.SearchController)
 	r.POST("/rotate", controllers.RotateLogController)
 	r.POST("/ignored", controllers.GetIgnoredController)
