@@ -1,11 +1,9 @@
 import axios from "axios";
-import { useEffect } from "react";
 import {
   Link,
   useLoaderData,
   useNavigate,
   useNavigation,
-  useParams,
 } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Code from "../../components/Code";
@@ -18,7 +16,6 @@ import { formatDistance } from "date-fns";
 
 export default function Id() {
   const logs: ErLog[] = useLoaderData() as ErLog[];
-  const params = useParams();
   const router = useNavigate();
   const navigation = useNavigation();
 
@@ -27,9 +24,7 @@ export default function Id() {
       return;
     }
 
-    const { data } = await axios.post(
-      `http://127.0.0.1:8080/ignore/${logs[0].id}`
-    );
+    await axios.post(`http://127.0.0.1:8080/ignore/${logs[0].id}`);
 
     router("/logs");
   };
@@ -38,7 +33,6 @@ export default function Id() {
     const current = new Date();
 
     const date = new Date(timeStamp);
-    console.log(date);
     return formatDistance(date, current, { addSuffix: true });
   };
 

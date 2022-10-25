@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from "react";
-import {
-  Form,
-  Outlet,
-  useLoaderData,
-  useLocation,
-  useNavigate,
-  useNavigation,
-} from "react-router-dom";
-import Split from "react-split";
+import { useEffect } from "react";
+import { Form, Outlet, useLoaderData } from "react-router-dom";
 import IDSplit from "../components/IdSplit";
 import LogContainer from "../components/LogContainer";
 import { ILoaderData } from "../models";
 
 function Index() {
-  const router = useNavigate();
-  const location = useLocation();
-  // const [logData, setLogData] = useState<LogCount[]>([]);
   const { logData, search }: ILoaderData = useLoaderData() as any;
 
   useEffect(() => {
-    console.log(location);
     (document.getElementById("search") as any).value = search;
   }, [search]);
 
@@ -45,7 +33,7 @@ function Index() {
             />
           </Form>
           {logData.map((data) => (
-            <LogContainer log={data} />
+            <LogContainer log={data} key={data.id} />
           ))}
         </div>
         <div className="h-screen bg-white">

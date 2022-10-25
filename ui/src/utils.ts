@@ -8,8 +8,8 @@ export const sortLogs = (logs: ErLog[], sortDate: string) => {
   if (sortDate === "ascending") {
     return logs.sort(function (a, b) {
       return (
-        new Date(b.extraData.timestamp).getDate() -
-        new Date(a.extraData.timestamp).getDate()
+        new Date(b.extraData.timestamp).getTime() / 1000 -
+        new Date(a.extraData.timestamp).getTime() / 1000
       );
     });
   } else {

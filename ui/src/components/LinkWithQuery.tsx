@@ -1,12 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-export default function LinkWithQuery({ children, to, ...props }: any) {
+export default function LinkWithQuery({ children, to }: any) {
+  const router = useNavigate();
   const { search } = useLocation();
-  console.log(search);
 
-  return (
-    <Link to={to + search} {...props}>
-      {children}
-    </Link>
-  );
+  return <div onClick={() => router(to + search)}>{children}</div>;
 }

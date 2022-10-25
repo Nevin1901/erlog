@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { LogCount } from "../models";
 import { toLength } from "../utils";
 import LinkWithQuery from "./LinkWithQuery";
@@ -29,7 +28,7 @@ export default function LogContainer({ log }: IProps) {
           log.logType
         )} max-w-3xl rounded-sm my-1.5 cursor-pointer px-1 py-1`}
       >
-        <a className="font-bold text-base">
+        <a href={`logs/${log.id}`} className="font-bold text-base">
           {log.title} <span className="text-xs text-gray-500">{log.num}</span>
         </a>
         <p className="text-sm text-gray-700">{toLength(log.message, 100)}</p>
