@@ -39,7 +39,7 @@ function Index() {
             <input
               id="search"
               name="search"
-              className="border-2 border-blue-500 rounded-sm"
+              className="p-0 border-2 pl-1 border-gray-300 focus:border-gray-500 focus:ring-gray-500 rounded-sm"
               type="text"
               defaultValue={search}
             />

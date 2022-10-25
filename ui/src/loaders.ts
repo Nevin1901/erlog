@@ -1,4 +1,5 @@
 import axios from "axios";
+import { sortLogs } from "./utils";
 
 export async function getLogs({ request }: any) {
   const url = new URL(request.url);
@@ -18,7 +19,8 @@ export async function getLogs({ request }: any) {
 
 export async function getLogById({ params }: any) {
   const { data } = await axios.post(`http://127.0.0.1:8080/logs/${params.id}`);
-  return data;
+  const ordered = sortLogs(data, "ascending");
+  return ordered;
 }
 
 export async function getIgnored() {
