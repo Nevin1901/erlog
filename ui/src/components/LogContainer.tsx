@@ -27,11 +27,12 @@ export default function LogContainer({ log }: IProps) {
         key={log.message}
         className={`bg-gray-100 border-2 ${getBorder(
           log.logType
-        )} max-w-3xl rounded-sm my-2 cursor-pointer mx-1 px-1.5 py-1`}
+        )} max-w-3xl rounded-sm my-1.5 cursor-pointer px-1 py-1`}
       >
-        <a className="font-bold">{log.title}</a>
-        <p>{toLength(log.message, 100)}</p>
-        <p>{log.num}</p>
+        <a className="font-bold">
+          {log.title} <span className="text-sm text-gray-500">{log.num}</span>
+        </a>
+        <p className="text-sm">{toLength(log.message, 100)}</p>
       </div>
     </LinkWithQuery>
   );

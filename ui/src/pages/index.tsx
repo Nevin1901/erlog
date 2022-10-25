@@ -30,12 +30,12 @@ function Index() {
   return (
     <IDSplit>
       <div className="mx-1.5 overflow-y-hidden">
-        <h1 className="font-semibold text-3xl">Logs</h1>
+        <h1 className="font-semibold text-xl">Logs</h1>
         <Form id="search-form" role="search">
           <input
             id="search"
             name="search"
-            className="border-2 border-blue-500 rounded-sm mx-1 my-1"
+            className="border-2 border-blue-500 rounded-sm my-1"
             type="text"
             defaultValue={search}
           />
@@ -45,7 +45,7 @@ function Index() {
         ))}
         <h1>Hello</h1>
       </div>
-      <div className="h-20 bg-white">
+      <div className="h-screen bg-white">
         <Outlet />
       </div>
     </IDSplit>
