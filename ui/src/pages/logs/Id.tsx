@@ -45,10 +45,12 @@ export default function Id() {
     return (
       <div className="bg-gray-50 max-h-screen overflow-y-scroll pt-1.5">
         <div className="px-1 flex items-center mb-1.5">
-          <Link to="/logs">
+          <Link to="/logs" className="hover:bg-slate-200 rounded-md">
             <CrossIcon />
           </Link>
-          <TrashIcon onClick={() => deleteLog()} />
+          <div className="hover:bg-slate-100 rounded-md">
+            <TrashIcon onClick={() => deleteLog()} />
+          </div>
         </div>
         <div className="space-y-1">
           {logs.map((log) => (
