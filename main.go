@@ -17,8 +17,30 @@ import (
 // alternatively I could just create a database in memory, and append to that (benchmark insert times for single records) and then periodically append to larger db every 100 seconds
 
 func main() {
+	// var slice []int
+	// var wg sync.WaitGroup
+
+	// queue := make(chan int, 1)
+
+	// for i := 0; i < 100; i++ {
+	// 	go func(i int) {
+	// 		wg.Add(1)
+	// 		queue <- i
+	// 	}(i)
+	// }
+
+	// go func() {
+	// 	for t := range queue {
+	// 		slice = append(slice, t)
+	// 		wg.Done()
+	// 	}
+	// }()
+
+	// wg.Wait()
+	// fmt.Println(slice)
+
 	models.ConnectDB("test.db")
-	go routines.SyncDB()
+	go routines.SetupSync()
 
 	r := gin.Default()
 	r.Use(cors.Default())

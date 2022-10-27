@@ -1,6 +1,7 @@
 package routines
 
 import (
+	"fmt"
 	"sync"
 	"time"
 
@@ -28,17 +29,24 @@ func AppendLog(value int) {
 }
 
 func SyncDB() {
+	for t := range queue {
+		slice = append(slice, t)
+		wg.Done()
+	}
+}
+
+func SetupSync() {
 	for {
-		println("got here")
 		if models.DB == nil {
 			println("db is nil, skipping")
 			continue
 		}
 
-		for t := range queue {
-			slice = append(slice, t)
-			wg.Done()
-		}
+		go SyncDB()
+		wg.Wait()
+
+		fmt.Println(slice)
+		slice = nil
 
 		time.Sleep(time.Second)
 	}
