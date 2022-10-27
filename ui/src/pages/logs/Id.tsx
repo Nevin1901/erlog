@@ -43,8 +43,8 @@ export default function Id() {
       return <LoadingSpinner />;
     }
     return (
-      <div className="max-h-screen overflow-y-scroll mt-1.5">
-        <div className="flex items-center mb-1.5">
+      <div className="bg-gray-50 max-h-screen overflow-y-scroll pt-1.5">
+        <div className="px-1 flex items-center mb-1.5">
           <Link to="/logs">
             <CrossIcon />
           </Link>
@@ -52,8 +52,8 @@ export default function Id() {
         </div>
         <div className="space-y-1">
           {logs.map((log) => (
-            <Disclosure key={log.id} as="div">
-              <Disclosure.Button className="flex bg-gray-100 items-center w-full">
+            <Disclosure key={log.id} as="div" defaultOpen={true}>
+              <Disclosure.Button className="bg-white flex items-center w-full p-1">
                 <h1 className="">
                   {log.extraData.timestamp
                     ? toDate(log.extraData.timestamp)
@@ -62,10 +62,10 @@ export default function Id() {
                 <ChevronRightIcon className="w-6 h-6 ui-open:rotate-90 ui-open:transform" />
               </Disclosure.Button>
               <Disclosure.Panel>
-                <div key={log.id}>
+                <div key={log.id} className="bg-white px-1">
                   <Code code={log.message} language={"javascript"}></Code>
 
-                  <h1 className="font-bold">Extra Info</h1>
+                  <h1 className="font-medium pt-2">Extra Info</h1>
                   <Code
                     code={JSON.stringify(log.extraData, null, 2)}
                     language={"javascript"}

@@ -21,13 +21,14 @@ function Index() {
         <h1 className="font-bold text-xl">ErLog</h1>
       </div>
       <IDSplit>
-        <div className="bg-gray-50 p-1.5 overflow-y-hidden">
+        <div className="bg-gray-50 p-1.5 h-screen overflow-y-hidden">
           {/* <h1 className="font-semibold text-xl">Logs</h1> */}
           <Form id="search-form" role="search">
             <input
               id="search"
+              placeholder="Search"
               name="search"
-              className="p-0 border-2 pl-1 border-gray-300 focus:border-gray-500 focus:ring-gray-500 rounded-sm"
+              className="bg-white p-0 border-2 border-gray-200 pl-1 focus:border-gray-300 focus:ring-gray-300 rounded-sm"
               type="text"
               defaultValue={search}
             />
@@ -36,7 +37,7 @@ function Index() {
             <LogContainer log={data} key={data.id} />
           ))}
         </div>
-        <div className="h-screen bg-white">
+        <div className="">
           <Outlet />
         </div>
       </IDSplit>
