@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/Nevin1901/arlog/controllers"
 	"github.com/Nevin1901/arlog/models"
+	"github.com/Nevin1901/arlog/routines"
 	"github.com/gin-contrib/cors"
 
 	"github.com/gin-gonic/gin"
@@ -16,7 +17,9 @@ import (
 // alternatively I could just create a database in memory, and append to that (benchmark insert times for single records) and then periodically append to larger db every 100 seconds
 
 func main() {
-	models.ConnectDB()
+	models.ConnectDB("test.db")
+	go routines.SyncDB()
+
 	r := gin.Default()
 	r.Use(cors.Default())
 

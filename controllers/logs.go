@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/Nevin1901/arlog/models"
+	"github.com/Nevin1901/arlog/routines"
 	"github.com/gin-gonic/gin"
 )
 
@@ -41,8 +42,8 @@ func AddLogController(c *gin.Context) {
 		return
 	}
 
-	// fmt.Printf("%+v\n", logObj)
 	models.DB.Create(&logObj)
+	go routines.AppendLog(2)
 	println("done")
 	c.String(200, "OK")
 }
