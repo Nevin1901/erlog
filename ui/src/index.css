@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 .gutter-horizontal {
-  background-color: #e2e8f0;
+  background-color: #e5e7eb;
+  /* background-color: #e2e8f0; */
   height: 100vh;
 }
 
 .gutter-horizontal:hover {
   background-color: #d1d5db;
+  /* background-color: #d1d5db; */
   /* background-color: #cbd5e1; */
   cursor: ew-resize;
 }

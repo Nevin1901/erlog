@@ -53,8 +53,8 @@ export default function Id() {
         <div className="space-y-1">
           {logs.map((log) => (
             <Disclosure key={log.id} as="div">
-              <Disclosure.Button className="flex items-center border-y-2 border-black w-full">
-                <h1 className="font-bold">
+              <Disclosure.Button className="flex bg-gray-100 items-center w-full">
+                <h1 className="">
                   {log.extraData.timestamp
                     ? toDate(log.extraData.timestamp)
                     : log.title}

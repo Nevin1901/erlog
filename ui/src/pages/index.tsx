@@ -17,11 +17,11 @@ function Index() {
 
   return (
     <div>
-      <div className="h-8 flex items-center border-b-4 px-1.5">
+      <div className="bg-gray-50 h-8 flex items-center px-1.5">
         <h1 className="font-bold text-xl">ErLog</h1>
       </div>
       <IDSplit>
-        <div className="mx-1.5 my-1.5 overflow-y-hidden">
+        <div className="bg-gray-50 p-1.5 overflow-y-hidden">
           {/* <h1 className="font-semibold text-xl">Logs</h1> */}
           <Form id="search-form" role="search">
             <input
