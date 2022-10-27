@@ -8,20 +8,13 @@ import (
 	"github.com/Nevin1901/arlog/models"
 )
 
-var slice []int
+var slice []models.ErLog
 var wg sync.WaitGroup
-var queue chan int
+var queue chan models.ErLog
 
-// func SetupSync() {
-// 	wg = sync.WaitGroup{}
-// 	queue = make(chan int, 1)
-// }
-
-// todo: make append log function which can be synchronized across multiple threads calling it
-func AppendLog(value int) {
+func AppendLog(value models.ErLog) {
 	if queue == nil {
-		println("queue is nil")
-		queue = make(chan int, 1)
+		queue = make(chan models.ErLog, 1)
 	}
 
 	wg.Add(1)
@@ -45,7 +38,8 @@ func SetupSync() {
 		go SyncDB()
 		wg.Wait()
 
-		fmt.Println(slice)
+		models.DB.CreateInBatches(&slice, 512)
+		fmt.Println(len(slice))
 		slice = nil
 
 		time.Sleep(time.Second)

@@ -43,7 +43,7 @@ func AddLogController(c *gin.Context) {
 	}
 
 	// models.DB.Create(&logObj)
-	go routines.AppendLog(2)
+	go routines.AppendLog(logObj)
 	println("done")
 	c.String(200, "OK")
 }
