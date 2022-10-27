@@ -30,8 +30,12 @@ func ConnectDB() {
 	database.AutoMigrate(&ErLog{})
 	database.AutoMigrate(&IgnoreList{})
 
+	// thank you https://phiresky.github.io/blog/2020/sqlite-performance-tuning/
 	database.Exec("PRAGMA journal_mode=WAL;")
-	database.Exec("PRAGMA synchronous=1")
+	database.Exec("PRAGMA synchronous=normal;")
+	database.Exec("PRAGMA temp_store=memory;")
+	database.Exec("PRAGMA mmap_size=30000000000;")
+
 
 	DB = database
 }

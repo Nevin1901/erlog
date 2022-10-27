@@ -17,3 +17,4 @@ type ErLog struct {
 	Title		string			`json:"title"`
 	ExtraData	datatypes.JSON	`json:"extraData"`
 }
+
