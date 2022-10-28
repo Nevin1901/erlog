@@ -1,7 +1,6 @@
 package routines
 
 import (
-	"fmt"
 	"sync"
 	"time"
 
@@ -31,7 +30,6 @@ func SyncDB() {
 func SetupSync() {
 	for {
 		if models.DB == nil {
-			println("db is nil, skipping")
 			continue
 		}
 
@@ -39,7 +37,6 @@ func SetupSync() {
 		wg.Wait()
 
 		models.DB.CreateInBatches(&slice, 512)
-		fmt.Println(len(slice))
 		slice = nil
 
 		time.Sleep(time.Second)

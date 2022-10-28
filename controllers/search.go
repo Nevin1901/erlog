@@ -10,7 +10,6 @@ func AllLogsController(c *gin.Context) {
 	result := models.DB.Find(&logs)
 
 	if result.Error != nil {
-		println("Error")
 		c.String(400, "Error")
 		return
 	}

@@ -37,7 +37,6 @@ func AddLogController(c *gin.Context) {
 	}
 
 	if exists == true {
-		println("ignored")
 		c.String(200, "Ignored")
 		return
 	}
@@ -63,6 +62,10 @@ func SearchController(c *gin.Context) {
 	if result.Error != nil {
 		c.String(400, "Error in getting logs")
 		return
+	}
+
+	if logs == nil {
+		logs = []models.ErLog{}
 	}
 
 	c.JSON(200, logs)
@@ -105,12 +108,15 @@ type MessageCount struct {
 func CountController(c *gin.Context) {
 	var count []MessageCount
 	search := c.Query("search")
-	println(search)
 
 	result := models.DB.Raw("SELECT id, title, message, log_type, COUNT(*) AS `num` FROM er_logs WHERE (message LIKE ? OR extra_data LIKE ? OR title LIKE ?) AND deleted_at IS NULL GROUP BY message", "%"+search+"%", "%"+search+"%", "%"+search+"%").Scan(&count)
 	if result.Error != nil {
 		c.String(400, "Error getting logs")
 		return
+	}
+
+	if count == nil {
+		count = []MessageCount{}
 	}
 
 	c.JSON(200, count)

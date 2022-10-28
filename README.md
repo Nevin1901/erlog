@@ -1,5 +1,7 @@
 ## Erlog
 
+![1](./assets/1.png)
+
 Erlog is a simple lightweight logging platform. Erlog lets you add logging to your code without worrying about logging.
 
 ## Running
@@ -15,6 +17,12 @@ docker images coming later
 logging sucks. It's expensive, most open source options are not easily self hostable, and for small projects, there's no easy way to implement logs into your applications wihtout using a third party option or self hosting your own logging server.
 
 Erlog lets you log without worrying about logging.
+
+## Features
+
+- Really lightweight (just a go executable and sqlite file)
+- Fast. Logs are first stored into memory and then added to sqlite in batches. There are also sqlite tweaks to make writing faster
+- Easy to use, simply add `const logger = createLogger()` and `logger.log(info)`
 
 ## Things that can change
 
