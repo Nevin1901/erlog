@@ -2,11 +2,13 @@
 
 ![1](./assets/1.png)
 
+[Roadmap](https://github.com/users/Nevin1901/projects/1)
+
 Erlog is a simple lightweight logging platform. Erlog lets you add logging to your code without worrying about logging.
 
 ## Running
 
-`go run -tags json1 main.go`
+`go run -tags json1 main.go` for server - default database is test.db
 
 `yarn start` for ui
 
@@ -22,7 +24,7 @@ Erlog lets you log without worrying about logging.
 
 - Really lightweight (just a go executable and sqlite file)
 - Fast. Logs are first stored into memory and then added to sqlite in batches. There are also sqlite tweaks to make writing faster
-- Easy to use, simply add `const logger = createLogger()` and `logger.log(info)`
+- Easy to use, just add `const logger = createLogger()` and `logger.log(info)`
 
 ## Things that can change
 
