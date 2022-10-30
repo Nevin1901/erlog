@@ -109,7 +109,7 @@ func CountController(c *gin.Context) {
 	var count []MessageCount
 	search := c.Query("search")
 
-	result := models.DB.Raw("SELECT id, title, message, log_type, COUNT(*) AS `num` FROM er_logs WHERE (message LIKE ? OR extra_data LIKE ? OR title LIKE ?) AND deleted_at IS NULL GROUP BY message", "%"+search+"%", "%"+search+"%", "%"+search+"%").Scan(&count)
+	result := models.DB.Raw("SELECT id, title, message, log_type, COUNT(*) AS `num` FROM er_logs WHERE (message LIKE ? OR extra_data LIKE ? OR title LIKE ?) AND deleted_at IS NULL GROUP BY title", "%"+search+"%", "%"+search+"%", "%"+search+"%").Scan(&count)
 	if result.Error != nil {
 		c.String(400, "Error getting logs")
 		return

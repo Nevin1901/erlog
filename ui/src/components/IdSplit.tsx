@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import Split from "react-split";
 
 export default function IDSplit({ children }: any) {
-  const [sizes, setSizes] = useState<number[]>([40, 60]);
+  const [sizes, setSizes] = useState<number[]>([30, 70]);
   const location = useLocation();
 
   const handleDrag = (_sizes: number[]) => {

@@ -1,19 +1,39 @@
 import { useEffect } from "react";
-import { Form, Outlet, useLoaderData } from "react-router-dom";
+import {
+  Form,
+  Outlet,
+  useLoaderData,
+  useNavigation,
+  useParams,
+} from "react-router-dom";
 import IDSplit from "../components/IdSplit";
 import LogContainer from "../components/LogContainer";
 import { ILoaderData } from "../models";
 
 function Index() {
+  const { id } = useParams();
   const { logData, search }: ILoaderData = useLoaderData() as any;
 
   useEffect(() => {
+    console.log(id);
     (document.getElementById("search") as any).value = search;
   }, [search]);
 
   if (!logData) {
     return <div></div>;
   }
+
+  const isActive = (_id: number) => {
+    if (!id) {
+      return false;
+    }
+
+    if (parseInt(id) === _id) {
+      return true;
+    }
+
+    return false;
+  };
 
   return (
     <div>
@@ -34,7 +54,11 @@ function Index() {
             />
           </Form>
           {logData.map((data) => (
-            <LogContainer log={data} key={data.id} />
+            <LogContainer
+              log={data}
+              key={data.id}
+              selected={isActive(data.id)}
+            />
           ))}
         </div>
         <div className="">

@@ -4,12 +4,11 @@ import LinkWithQuery from "./LinkWithQuery";
 
 interface IProps {
   log: LogCount;
+  selected: boolean;
 }
 
 function getBorder(logType: string) {
   switch (logType) {
-    case "info":
-      return "border-none";
     case "error":
       return "border-red-500";
     case "warning":
@@ -24,12 +23,14 @@ function getBorder(logType: string) {
  * @param param0
  * @returns
  */
-export default function LogContainer({ log }: IProps) {
+export default function LogContainer({ log, selected }: IProps) {
   return (
     <LinkWithQuery to={`/logs/${log.id}`}>
       <div
         key={log.message}
-        className={`border-2 bg-white ${getBorder(
+        className={`border-2 bg-white ${
+          selected ? "border-black" : ""
+        }  ${getBorder(
           log.logType
         )} max-w-2xl rounded-md my-1.5 cursor-pointer px-1 py-1 hover:bg-gray-100`}
       >

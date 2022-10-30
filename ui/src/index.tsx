@@ -23,6 +23,7 @@ const router = createBrowserRouter([
         path: "/logs/:id",
         element: <Id />,
         loader: getLogById,
+        errorElement: <div>Log not found</div>,
       },
     ],
   },
