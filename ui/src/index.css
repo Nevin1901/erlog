@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.token {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 .gutter-horizontal {
   background-color: #e5e7eb;
   /* background-color: #e2e8f0; */

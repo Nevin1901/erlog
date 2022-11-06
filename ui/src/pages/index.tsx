@@ -36,12 +36,12 @@ function Index() {
   };
 
   return (
-    <div>
+    <div className="h-screen">
       <div className="bg-gray-100 h-8 flex items-center px-1.5">
         <h1 className="font-bold text-xl">ErLog</h1>
       </div>
-      <IDSplit>
-        <div className="bg-gray-100 p-1.5 h-screen overflow-y-hidden">
+      <IDSplit className="h-full">
+        <div className="bg-gray-100 p-1.5">
           {/* <h1 className="font-semibold text-xl">Logs</h1> */}
           <Form id="search-form" role="search">
             <input
