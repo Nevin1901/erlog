@@ -26,6 +26,10 @@ Erlog lets you log without worrying about logging.
 - Fast. Logs are first stored into memory and then added to sqlite in batches. There are also sqlite tweaks to make writing faster
 - Easy to use, just add `const logger = createLogger()` and `logger.log(info)`
 
+## TODO
+
+- projects so you can link multiple apps to one instance (projects page just goes to logs page with a url param set so you can see logs across all applications)
+
 ## Things that can change
 
 Erlog currently uses sqlite with flags and tweaks which make it really fast. The problem is sqlite can't scale. I'm debating using clickhouse, but at the added complexity of making erlog not be lightweight (4gb ram + dual core if you want to get the most of clickouse)
