@@ -4,7 +4,11 @@
 
 [Roadmap](https://github.com/users/Nevin1901/projects/1)
 
+ErLog: quickly add logging to your code.
+
 Erlog is a simple lightweight logging platform. Erlog lets you add logging to your code without worrying about logging.
+
+It's easy, catches all errors, lets you search them, and closed source
 
 ## Running
 
