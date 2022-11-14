@@ -32,6 +32,8 @@ Erlog lets you log without worrying about logging.
 
 ## TODO
 
+- add cool graphs
+
 - projects so you can link multiple apps to one instance (projects page just goes to logs page with a url param set so you can see logs across all applications)
 
 ## Things that can change
